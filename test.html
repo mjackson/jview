@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>jView Test</title>
+<script type="text/javascript" src="jquery-1.5.1.js"></script>
+<script type="text/javascript" src="jview.js"></script>
+<script type="text/javascript">
+
+var Square = jView.sub(function (length) {
+  length = parseInt(length, 10) || 100;
+  jView.prototype.init.call(this, length);
+});
+
+var ColoredSquare = Square.sub(function (color, length) {
+  Square.prototype.init.call(this, length);
+  color = color || 'red';
+  this.css('backgroundColor', color);
+});
+
+var YellowSquare = ColoredSquare.sub(function (length) {
+  ColoredSquare.prototype.init.call(this, 'yellow', length);
+});
+
+var a = new ColoredSquare('blue', 40);
+var b = new ColoredSquare('green', 140);
+
+b.click(function () {
+  console.log(this.css('backgroundColor'))
+})
+
+var c = new YellowSquare;
+
+c.click(function () {
+  console.log(this.dom);
+})
+
+jQuery(function () {
+  // console.log(a)
+  jQuery(document.body).append(a);
+  jQuery(document.body).append(b);
+  jQuery(document.body).append(c);
+});
+
+</script>
+</head>
+<body></body>
+</html>
