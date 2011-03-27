@@ -1,0 +1,12 @@
+jView is a prototype for JavaScript view objects that subclasses the jQuery.fn
+prototype. A jView is essentially a wrapper for a single element, usually a div,
+with the following special properties:
+
+- jView instances may have custom events bound to them using jQuery's native
+  events subsystem and the familiar bind/one/unbind/trigger mechanism
+- jView instances try to keep track of their superview
+
+Also, jView prototypes may easily be extended to support complex view class
+hierarchies.
+
+The code is purely experimental at this point, so no guarantees.
