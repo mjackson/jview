@@ -10,6 +10,8 @@
     }
   }
 
+  jView.version = '0.1';
+
   jView.sup = jQueryFn.init;
 
   jView.sub = function (init) {
