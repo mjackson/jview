@@ -1,11 +1,11 @@
 (function (jQuery, undefined) {
 
-  var _init = true,
-
-  jQueryFn = jQuery.fn;
+  var jQueryFn = jQuery.fn,
+  isFunction = jQuery.isFunction,
+  _init = true;
 
   function jView() {
-    if (_init && this.init) {
+    if (_init && isFunction(this.init)) {
       this.init.apply(this, arguments);
     }
   }
@@ -79,7 +79,7 @@
   // of the view object (instead of the element).
   jQuery.each(['bind', 'one'], function (i, name) {
     jView.prototype[name] = function (type, data, fn) {
-      if (this[type] && this[type] !== jQueryFn[type]) {
+      if (isFunction(this[type]) && this[type] !== jQueryFn[type]) {
         jQuery([this])[name](type, data, fn);
         return this;
       }
@@ -91,7 +91,7 @@
   // Hijack jQuery.fn.unbind and jQuery.fn.trigger.
   jQuery.each(['unbind', 'trigger'], function (i, name) {
     jView.prototype[name] = function (type) {
-      if (this[type] && this[type] !== jQueryFn[type]) {
+      if (isFunction(this[type]) && this[type] !== jQueryFn[type]) {
         jQueryFn[name].apply(jQuery([this]), arguments);
         return this;
       }
@@ -103,7 +103,7 @@
   // Hijack jQuery.fn.triggerHandler. Need to do this separately from unbind
   // and trigger because the return value is different.
   jView.prototype.triggerHandler = function (type, data) {
-    if (this[type] && this[type] !== jQueryFn[type]) {
+    if (isFunction(this[type]) && this[type] !== jQueryFn[type]) {
       return jQuery([this]).triggerHandler(type, data);
     }
 
