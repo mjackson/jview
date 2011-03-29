@@ -66,8 +66,8 @@
     tagName = tagName || 'div';
     jView.sup.call(this, '<' + tagName + '>');
 
-    width = parseInt(width, 10) || 0;
-    height = parseInt(height, 10) || width;
+    width = width || 0;
+    height = height || width;
     if (width || height) {
       this.css({ width: width, height: height });
     }
