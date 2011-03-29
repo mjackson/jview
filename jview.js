@@ -68,8 +68,8 @@
     tagName = tagName || 'div';
     jView.sup.call(this, '<' + tagName + '>');
 
-    width = width || 0;
-    height = height || width;
+    width = typeof width === "number" ? Math.round(width) : 0;
+    height = typeof height === "number" ? Math.round(height) : width;
     if (width || height) {
       this.css({ width: width, height: height });
     }
