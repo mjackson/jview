@@ -21,8 +21,8 @@
       sup.apply(this, arguments);
     }
 
-    sub.sub = sup.sub;
     sub.sup = sup;
+    sub.sub = sup.sub;
     sub.addEvent = sup.addEvent;
     sub.removeEvent = sup.removeEvent;
 
@@ -56,7 +56,7 @@
   }
 
   jView.removeEvent = function (name) {
-    if (jQuery.isFunction(this.prototype[name])) {
+    if (isFunction(this.prototype[name])) {
       delete this.prototype[name];
     }
   }
