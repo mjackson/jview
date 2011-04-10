@@ -31,6 +31,7 @@
     _init = true;
 
     sub.prototype.constructor = sub;
+    sub.prototype.sup = sup.prototype;
 
     // Default init simply calls super's init with the same args.
     sub.prototype.init = init || function () {
